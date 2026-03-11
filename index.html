@@ -1,0 +1,255 @@
+<!-- The originial version of this template was made by Johnathan Soma and then messed with and customized by Aaron Reiss -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: palevioletred;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 2rem;
+        max-width: 400px;
+        border-radius: 8px;
+        text-align: center;
+        font-family: sans-serif;
+        font-size: 14px;
+      }
+
+      .modal button {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+      }
+      
+      h1{
+        max-width: 50%;
+        margin: 4rem auto 2rem auto;
+        }
+      
+      p{
+        max-width: 50%;
+        font-family: sans-serif;
+        margin: 0 auto 2rem auto;
+        font-size: 19px;
+      }
+      
+      #scrolly {
+        position: relative;
+        padding: 1rem;
+      }
+
+      .scrolly-overlay {
+        position: relative;
+        padding: 0;
+        max-width: 35rem;
+        margin-left: 2px;
+        margin-right: auto;
+      }
+
+      .sticky-thing {
+        position: -webkit-sticky;
+        position: sticky;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        z-index: 0;
+        top: 0;
+        height: 100vh;
+        /* Center everything inside */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .step {
+        margin: 0 auto 2rem auto;
+        margin-bottom: 25rem;
+        background-color: #eee;
+        background-color: #fff;
+        color: black;
+        text-align: center;
+        border: 3px solid red;
+      }
+
+      .step p {
+        padding: 1rem;
+        font-size: 1.25rem;
+        border: black;
+      }
+
+      #zoomBox {
+          overflow: clip;    
+          margin-left: 44vw !important;
+          max-width: 53vw !important;
+          max-height: none !important;
+      }
+      
+      .photoDiv {
+        width: 100%;
+        margin-right: 0px;
+        margin-left: auto;
+        display: block;
+        transition:
+          margin 1.5s 0s,
+          transform 2.5s 0s;
+      }
+
+      /* When it's less than 700 pixels wide, do normal scrollytelling */
+      @media only screen and (min-width: 700px) {
+        #scrolly.side-by-side {
+          display: flex;
+        }
+
+        #scrolly.side-by-side > div {
+          flex-basis: 0;
+          flex-grow: 1;
+          flex-shrink: 1;
+          padding: 0.75em;
+        }
+
+        #scrolly.side-by-side .scrolly-overlay {
+          margin-top: 70vh;
+          order: 0;
+          /* Change these to adjust sizing options */
+          min-width: 15rem;
+          max-width: 20rem;
+        }
+
+        #scrolly.side-by-side .sticky-thing {
+          order: 1;
+          flex-grow: 2;
+        }
+      }
+    </style>
+		<script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.0.4/scrollama.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+  </head>
+
+  <body>
+	<h1>Template for Scrollytelling With Exported Images</h1>
+
+  <p>This is a template for a scrollytelling experience that basically puts an image element on the webpage in the html (you can see it in the code below here, it's called scrollyPhoto) and then uses different scrolly steps (step1, step2, etc) to change the image that shows up in the image element. You change the image that shows up by changing the "src" that the image element looks for.</p>
+
+  <p>This template will help cheat a kind of scrolly telling map that "changes" as you scroll.</p>
+
+  
+      <section id="scrolly">
+        <div class="sticky-thing">
+          <div id="zoomBox">
+<!-- Sticky Thing 1 goes below this line -->
+            <img id="scrollyPhoto" class="photoDiv" src="images/map1.png">
+<!-- Sticky Thing 1 goes above this line -->
+          </div>        
+        </div>
+
+        <div class="scrolly-overlay">
+          <div class="step" id="step1">
+            <p>STEP ONE<br><br>Changes the image</p>
+          </div>
+          <div class="step" id="step2">
+            <p>STEP TWO<br><br>Changes the image again, this is all by changing the "src" address that "#scrollyPhoto1" is looking for.</p>
+          </div>
+          <div class="step" id="step3">
+            <p>STEP THREE<br><br>You can add as many steps as you want. You could even add an image inside a scrolly step — just look at this beautiful illustration by Kento Iida, below:</p>
+            <img src="images/kento.png" style="max-width: 300px; margin: 0 auto">
+          </div>
+        </div>
+      </section>
+
+      <p>Then maybe I have a block of text talking about something or another and then I want to direct you to another map, or a different zoom level, or an image that I want to annotate — whatever. I can create another photoDiv below. In fact, I can add as many as I want.</p>
+
+      <p>This concept works best if you have a simple base map with a story that progresses with prose on the left and changing annotations on that base map on the right. and it requires that when you export images from Adobe Illustrator you ALWAYS USE THE ARTBOARD when saving and keep all save settings the same (size, image type, etc).</p>
+
+    <!-- Mobile Warning Modal -->
+    <div id="deviceModal" class="modal">
+      <div class="modal-content">
+        <span>
+          Wow! One of your friends must be in Aaron Reiss's "Telling Stories With Maps" class — how cool! <br><br> Sadly, this site is meant to be viewed on a computer, so if you are on a phone or tablet then it's gonna look all kinds of wonky and you might get the wrong impression about how amazing this work is.
+        </span>
+        <button id="continueBtn">Continue Anyway</button>
+      </div>
+    </div>
+
+<script>
+
+/* Scrollytelling code goes under here */
+
+  // Code for the Photo Div #1 (aka #scrollyPhoto1)
+    
+    // Entering Step One
+  d3.select("#step1").on('stepin',function(e) {
+    console.log("We've arrived at STEP ONE in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/map2.png");
+    // d3.select("#scrollyPhoto").style("transform", "scale(2.9) translate(0%, -10%)");
+  })
+
+    // Entering Step Two
+    d3.select("#step2").on('stepin',function(e) {
+    console.log("We've arrived at STEP TWO in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/map3.png");
+
+  })
+
+    // Entering Step Three
+    d3.select("#step3").on('stepin',function(e) {
+    console.log("We've arrived at STEP Three in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/map4.png");
+  })
+
+</script>
+
+<!-- LEAVE ALONE, scrolly code goes in the section below -->
+<script>
+    const scroller = scrollama();
+
+	scroller
+		.setup({
+			step: "#scrolly .scrolly-overlay .step",
+			offset: 0.5,
+			debug: false
+		})
+		.onStepEnter(function({ element, index, direction}) {
+			const event = new CustomEvent('stepin', { detail: { direction: direction } })
+			element.dispatchEvent(event);
+		})
+		.onStepExit(function({ element, index, direction }) {
+			const event = new CustomEvent('stepout', { detail: { direction: direction } })
+			element.dispatchEvent(event);
+		});
+
+	window.addEventListener("resize", scroller.resize);
+    </script>
+
+
+<!-- mobile phone warning modal -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const isSmallScreen = window.innerWidth <= 900;
+
+    if (isSmallScreen) {
+      document.getElementById("deviceModal").style.display = "flex";
+    }
+
+    document
+      .getElementById("continueBtn")
+      .addEventListener("click", function () {
+        document.getElementById("deviceModal").style.display = "none";
+      });
+  });
+</script>
+
+  </body>
+</html>
