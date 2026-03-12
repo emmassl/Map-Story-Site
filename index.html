@@ -5,173 +5,81 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      .modal {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: palevioletred;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-      }
-
-      .modal-content {
-        background: white;
-        padding: 2rem;
-        max-width: 400px;
-        border-radius: 8px;
-        text-align: center;
-        font-family: sans-serif;
-        font-size: 14px;
-      }
-
-      .modal button {
-        margin-top: 1rem;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-      }
-      
-      h1{
-        max-width: 50%;
-        margin: 4rem auto 2rem auto;
-        }
-      
-      p{
-        max-width: 50%;
-        font-family: sans-serif;
-        margin: 0 auto 2rem auto;
-        font-size: 19px;
-      }
-      
-      #scrolly {
-        position: relative;
-        padding: 1rem;
-      }
-
-      .scrolly-overlay {
-        position: relative;
-        padding: 0;
-        max-width: 35rem;
-        margin-left: 2px;
-        margin-right: auto;
-      }
-
-      .sticky-thing {
-        position: -webkit-sticky;
-        position: sticky;
-        left: 0;
-        width: 100%;
-        margin: 0;
-        z-index: 0;
-        top: 0;
-        height: 100vh;
-        /* Center everything inside */
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      .step {
-        margin: 0 auto 2rem auto;
-        margin-bottom: 25rem;
-        background-color: #eee;
-        background-color: #fff;
-        color: black;
-        text-align: center;
-        border: 3px solid red;
-      }
-
-      .step p {
-        padding: 1rem;
-        font-size: 1.25rem;
-        border: black;
-      }
-
-      #zoomBox {
-          overflow: clip;    
-          margin-left: 44vw !important;
-          max-width: 53vw !important;
-          max-height: none !important;
-      }
-      
-      .photoDiv {
-        width: 100%;
-        margin-right: 0px;
-        margin-left: auto;
-        display: block;
-        transition:
-          margin 1.5s 0s,
-          transform 2.5s 0s;
-      }
-
-      /* When it's less than 700 pixels wide, do normal scrollytelling */
-      @media only screen and (min-width: 700px) {
-        #scrolly.side-by-side {
-          display: flex;
-        }
-
-        #scrolly.side-by-side > div {
-          flex-basis: 0;
-          flex-grow: 1;
-          flex-shrink: 1;
-          padding: 0.75em;
-        }
-
-        #scrolly.side-by-side .scrolly-overlay {
-          margin-top: 70vh;
-          order: 0;
-          /* Change these to adjust sizing options */
-          min-width: 15rem;
-          max-width: 20rem;
-        }
-
-        #scrolly.side-by-side .sticky-thing {
-          order: 1;
-          flex-grow: 2;
-        }
-      }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Lexend:wght@100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 		<script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.0.4/scrollama.min.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+      <link rel="stylesheet" href="styles.css">
   </head>
 
   <body>
-	<h1>Template for Scrollytelling With Exported Images</h1>
-
-  <p>This is a template for a scrollytelling experience that basically puts an image element on the webpage in the html (you can see it in the code below here, it's called scrollyPhoto) and then uses different scrolly steps (step1, step2, etc) to change the image that shows up in the image element. You change the image that shows up by changing the "src" that the image element looks for.</p>
-
-  <p>This template will help cheat a kind of scrolly telling map that "changes" as you scroll.</p>
-
-  
+    <div>
+	<!-- <h1 style="font-size: 4rem;">Yale's Home of Many Nations</h1> -->
+    <div>
+        <h3>"Yale University acknowledges that indigenous peoples and nations, including Mohegan, Mashantucket Pequot, Eastern Pequot, Schaghticoke, Golden Hill Paugussett, Niantic, and the Quinnipiac and other Algonquian speaking peoples, have stewarded through generations the lands and waterways of what is now the state of Connecticut.  We honor and respect the enduring relationship that exists between these peoples and nations and this land."</h3>
+    </div>
+    <p>Above is Yale University’s land acknowledgment— the way you've heard it spoken aloud at public events or meetings many times on campus. Commonly used in academic, cultural, or public gatherings, land acknowledgments are formal statements intending to recognize the Indigenous peoples who have stewarded a particular area, past, present, and future, acknowledging both history and the ongoing presence of Indigenous communities. </p>  
       <section id="scrolly">
         <div class="sticky-thing">
           <div id="zoomBox">
 <!-- Sticky Thing 1 goes below this line -->
-            <img id="scrollyPhoto" class="photoDiv" src="images/map1.png">
+            <img id="scrollyPhoto" class="photoDiv" src="images/ct1.jpg">
 <!-- Sticky Thing 1 goes above this line -->
           </div>        
         </div>
 
         <div class="scrolly-overlay">
           <div class="step" id="step1">
-            <p>STEP ONE<br><br>Changes the image</p>
+            <p>Yale University occupies the traditional lands of the <span style="color: rgb(232, 210, 42);">Mohegan,</span></p>
           </div>
           <div class="step" id="step2">
-            <p>STEP TWO<br><br>Changes the image again, this is all by changing the "src" address that "#scrollyPhoto1" is looking for.</p>
+            <p><span style="color: rgb(167, 87, 98);">Mohican,</span></p>
           </div>
           <div class="step" id="step3">
-            <p>STEP THREE<br><br>You can add as many steps as you want. You could even add an image inside a scrolly step — just look at this beautiful illustration by Kento Iida, below:</p>
-            <img src="images/kento.png" style="max-width: 300px; margin: 0 auto">
+            <p><span style="color: rgb(55, 105, 198);">Mashantucket Pequot, Eastern Pequot,</span></p>
+          </div>
+          <div class="step" id="step4">
+            <p><span style="color: rgb(60, 139, 87);">Schaghticoke,</span></p>
+          </div>
+          <div class="step" id="step5">
+            <p><span style="color: rgb(101, 59, 141);">Golden Hill Paugussett,</span></p>
+          </div>
+          <div class="step" id="step6">
+            <p><span style="color: rgb(236, 55, 73);">Niantic,</span></p>
+          </div>
+          <div class="step" id="step7">
+            <p><span style="color: rgb(70, 219, 233);">Quinnipiac,</span></p>
+          </div>
+          <div class="step" id="step8">
+            <p>and other Algonquian-speaking peoples.</p>
+          </div>
+          <div class="step" id="step9">
+            <p>The land acknowledgment names nations most Yalies have never seen on a map.</p>
+          </div>
+          <div class="step" id="step10">
+            <p>This is the story of how those nations (and many more) converged on <span style="color: #63b7e6;">one house at 26 High Street.</span></p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <p>Yale was founded in 1701 on Quinnipiac land. For most of its history, it's relationships with Indigenous peoples were often shaped by extraction than exchange.</p>
+    
+    <section id="scrolly2">
+        <div class="sticky-thing">
+          <div id="zoomBox2">
+            <img id="scrollyPhoto2" class="photoDiv" src="images/Henry.jpg">
+          </div>        
+        </div>
+        <div class="scrolly-overlay">
+          <div class="step" id="step11">
+            <p>Despite this, in 1906, Henry Roe Cloud became one of the first known Native students at Yale.</p>
           </div>
         </div>
       </section>
 
-      <p>Then maybe I have a block of text talking about something or another and then I want to direct you to another map, or a different zoom level, or an image that I want to annotate — whatever. I can create another photoDiv below. In fact, I can add as many as I want.</p>
-
-      <p>This concept works best if you have a simple base map with a story that progresses with prose on the left and changing annotations on that base map on the right. and it requires that when you export images from Adobe Illustrator you ALWAYS USE THE ARTBOARD when saving and keep all save settings the same (size, image type, etc).</p>
 
     <!-- Mobile Warning Modal -->
     <div id="deviceModal" class="modal">
@@ -190,23 +98,56 @@
   // Code for the Photo Div #1 (aka #scrollyPhoto1)
     
     // Entering Step One
-  d3.select("#step1").on('stepin',function(e) {
+    d3.select("#step1").on('stepin',function(e) {
     console.log("We've arrived at STEP ONE in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/map2.png");
-    // d3.select("#scrollyPhoto").style("transform", "scale(2.9) translate(0%, -10%)");
+    d3.select("#scrollyPhoto").attr("src", "images/ct1.jpg");
   })
-
     // Entering Step Two
     d3.select("#step2").on('stepin',function(e) {
     console.log("We've arrived at STEP TWO in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/map3.png");
-
+    d3.select("#scrollyPhoto").attr("src", "images/ct2.jpg");
   })
-
     // Entering Step Three
     d3.select("#step3").on('stepin',function(e) {
     console.log("We've arrived at STEP Three in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/map4.png");
+    d3.select("#scrollyPhoto").attr("src", "images/ct3.jpg");
+  })
+    // Entering Step Four
+    d3.select("#step4").on('stepin',function(e) {
+    console.log("We've arrived at STEP Four in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct4.jpg");
+  })
+    // Entering Step Five
+    d3.select("#step5").on('stepin',function(e) {
+    console.log("We've arrived at STEP Fix in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct5.jpg");
+  })
+    // Entering Step Six
+    d3.select("#step6").on('stepin',function(e) {
+    console.log("We've arrived at STEP Six in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct6.jpg");
+  })
+    // Entering Step Seven
+    d3.select("#step7").on('stepin',function(e) {
+    console.log("We've arrived at STEP Seven in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct7.jpg");
+  })
+    // Entering Step Eight
+    d3.select("#step8").on('stepin',function(e) {
+    console.log("We've arrived at STEP Eight in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct8.jpg");
+  })
+    // Entering Step Nine
+    d3.select("#step9").on('stepin',function(e) {
+    console.log("We've arrived at STEP Nine in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct9.jpg");
+    // d3.select("#scrollyPhoto").style("transform", "scale(2.9) translate(11%, -15%)");
+  })
+    // Entering Step Ten
+     d3.select("#step10").on('stepin',function(e) {
+    console.log("We've arrived at STEP Ten in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ct10.jpg");
+    d3.select("#scrollyPhoto").style("transform", "scale(2.9) translate(11%, -15%)");
   })
 
 </script>
@@ -232,6 +173,28 @@
 
 	window.addEventListener("resize", scroller.resize);
     </script>
+
+<!-- Left-Side Photo Scroller! by Me -->
+<script>
+    const scroller2 = scrollama();
+
+    scroller2
+    .setup({
+        step: "#scrolly2 .scrolly-overlay .step",
+        offset: 0.5,
+        debug: false
+    })
+    .onStepEnter(function({ element, index, direction }) {
+        const event = new CustomEvent('stepin', { detail: { direction: direction } });
+        element.dispatchEvent(event);
+    })
+    .onStepExit(function({ element, index, direction }) {
+        const event = new CustomEvent('stepout', { detail: { direction: direction } });
+        element.dispatchEvent(event);
+    });
+
+window.addEventListener("resize", scroller2.resize);
+</script>
 
 
 <!-- mobile phone warning modal -->
